@@ -2,7 +2,7 @@
 using namespace std;
 
 int main() {
-    freopen("shell.in", "r", stdin);
+    freopen("mixmilk.in", "r", stdin);
     
     vector<int> capacity(3);
     vector<int> milk(3);
@@ -19,7 +19,7 @@ int main() {
         milk[b] += amt;
     }
     
-    freopen("shell.out", "w", stdout);
+    freopen("mixmilk.out", "w", stdout);
     for (int i : milk) 
         printf("%d\n", i);
 }
