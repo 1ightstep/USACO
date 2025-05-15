@@ -13,7 +13,7 @@ int main() {
     for (int i = 0; i < 100; i++) {
         a = i % 3; 
         b = (i+1) % 3;
-        amt = min({milk[a], capacity[b]});
+        amt = min({milk[a], capacity[b] - milk[b]});
         
         milk[a] -= amt; 
         milk[b] += amt;
