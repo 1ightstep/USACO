@@ -1,0 +1,61 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int n; 
+    cin >> n; 
+
+    vector<string> ramp(n);
+    vector<int> a(n);
+    vector<int> b(n);
+    
+    for (int i = 0; i < n; i++)
+        cin >> ramp[i] >> a[i] >> b[i];
+
+    vector<int> before = {INT32_MIN, INT32_MAX};
+    vector<int> after = {INT32_MIN, INT32_MAX};
+
+    for (int i = n -1; i >= 0; i++) {
+        if (ramp[i] == "none") {
+            before[0] = max(before[0], a[i]);
+            before[1] = min(before[1], b[i]);
+        }
+        else if (ramp[i] == "off") {
+            before[0] += a[i]; 
+            before[1] += b[i];
+        }
+        else if (ramp[i] == "on") {
+            before[0] -= a[i]; 
+            before[0] -= b[i]; 
+        }
+    }
+
+    for (int i = 0; i < n; i++) {
+        if (ramp[i] == "none") {
+            after[0] = max(after[0], a[i]);
+            after[1] = min(after[1], b[i]);
+        }
+        else if (ramp[i] == "off") {
+            after[0] -= a[i]; 
+            after[1] -= b[i];
+        }        if (ramp[i] == "none") {
+            before[0] = max(before[0], a[i]);
+            before[1] = min(before[1], b[i]);
+        }
+        else if (ramp[i] == "off") {
+            before[0] += a[i]; 
+            before[1] += b[i];
+        }
+        else if (ramp[i] == "on") {
+            before[0] -= a[i]; 
+            before[0] -= b[i]; 
+        }
+        else if (ramp[i] == "on") {
+            after[0] += a[i]; 
+            after[0] += b[i]; 
+        }
+    }
+
+    std::cout << before[0] << before[1] << endl; 
+    std::cout << after[0] << after[1] << endl;
+}
