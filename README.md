@@ -1,1 +1,1 @@
-Quick desciption: I am toturing myself
+Quick description: I am torturing myself
