@@ -1,0 +1,47 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    freopen("lineup.in", "r", stdin);
+    freopen("lineup.out", "w", stdout);
+
+    int n; 
+    cin >> n; 
+    cin.ignore();
+
+    vector<string> cows = {"Bessie", "Buttercup", "Belinda", "Beatrice", "Bella", "Blue", "Betsy", "Sue"};
+    sort(cows.begin(), cows.end());
+
+    vector<pair<string, string>> constraints(n);
+    for (int i = 0; i < n; i++) {
+        string line; 
+        getline(cin, line);
+        stringstream ss(line);
+        string first, word, last;
+        ss >> first; 
+        while (ss >> word) last = word;
+        constraints[i] = {first, last}; 
+    }
+
+    do {
+        bool satisfied = false;
+        for (auto [a, b] : constraints) {
+            satisfied = false;
+            for (int i = 1; i < cows.size(); i++) {
+                bool bA = cows[i] == a && cows[i-1] == b;
+                bool aB = cows[i] == b && cows[i-1] == a;
+                if (bA || aB) { 
+                    satisfied = true;
+                    break;
+                }
+            }
+            if (!satisfied) break;
+        }
+        if (satisfied) {
+            for (string cow : cows)
+                cout << cow << endl;
+            break;
+        }
+    } while (next_permutation(cows.begin(), cows.end()));
+    
+}
